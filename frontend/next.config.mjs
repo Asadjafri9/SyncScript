@@ -3,6 +3,10 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  output: 'standalone',
+  experimental: {
+    serverComponentsExternalPackages: ['@supabase/supabase-js'],
+  },
   async headers() {
     return [
       {
