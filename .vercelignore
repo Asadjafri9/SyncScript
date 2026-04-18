@@ -1,0 +1,10 @@
+backend/
+*.md
+*.txt
+*.sh
+*.bat
+*.sql
+*.js
+!frontend/
+node_modules/
+.git/
