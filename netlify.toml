@@ -1,0 +1,33 @@
+[build]
+  base = "frontend"
+  publish = "frontend/.next"
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[functions]
+  node_bundler = "esbuild"
+
+# Redirects for SPA routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  conditions = {Role = ["admin"]}
+
+# API routes redirects
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# Environment variables (set these in Netlify dashboard)
+# NEXT_PUBLIC_SUPABASE_URL=https://ccvtuoyjricxsczhsemg.supabase.co
+# NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_eLACdJJ2Xo7iE_gHVCu5wA_d_5Y7Nuo
+# SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNjdnR1b3lqcmljeHNjemhzZW1nIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NjUwMzI1NSwiZXhwIjoyMDkyMDc5MjU1fQ.SZ5uz-0sUOFmnDGufaA8bs7fLXxIQfBM715yclkWDWU
+# GEMINI_API_KEY=AIzaSyAsFRt8a1iGS3K0VpPkO41H0Tw3sxLJOPc
+# NEXT_PUBLIC_APP_URL=https://your-site-name.netlify.app
